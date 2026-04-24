@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthBuddy — Your Personal Health Companion | MediaSsisst</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg2: #111113;
+            --bg3: #1a1a1e;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #f4f4f8;
+            --muted: #6b6b76;
+            --sub: #9b9ba8;
+            --accent: #6dd4a8;
+            --accent-warm: #b8f0d8;
+            --accent-glow: rgba(109, 212, 168, 0.12);
+            --font-d: 'Playfair Display', serif;
+            --font-b: 'DM Sans', sans-serif;
+            --font-m: 'Space Mono', monospace;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-b);
+            font-weight: 300;
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 22px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 11, 0.85);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo-text {
+            font-family: var(--font-d);
+            font-size: 20px;
+            color: var(--text);
+            letter-spacing: -0.5px
+        }
+
+        .logo-text span {
+            color: var(--accent);
+            font-style: italic
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--sub);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-m);
+            transition: color .3s
+        }
+
+        .nav-back:hover {
+            color: var(--accent)
+        }
+
+        .nav-tag {
+            background: rgba(109, 212, 168, 0.08);
+            border: 1px solid rgba(109, 212, 168, 0.2);
+            color: var(--accent);
+            padding: 6px 16px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-m)
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+            padding: 120px 60px 80px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 60%, rgba(109, 212, 168, 0.05) 0%, transparent 60%)
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .app-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(109, 212, 168, 0.08);
+            border: 1px solid rgba(109, 212, 168, 0.2);
+            padding: 8px 20px;
+            margin-bottom: 40px;
+            font-family: var(--font-m);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent)
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        h1 {
+            font-family: var(--font-d);
+            font-size: clamp(44px, 6vw, 82px);
+            font-weight: 900;
+            line-height: .95;
+            letter-spacing: -2.5px;
+            color: var(--text)
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--sub);
+            margin-top: 24px;
+            font-weight: 300
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 44px;
+            flex-wrap: wrap
+        }
+
+        .btn-p {
+            background: var(--accent);
+            color: #0a0a0b;
+            padding: 15px 32px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: none;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .btn-p:hover {
+            box-shadow: 0 20px 50px rgba(109, 212, 168, 0.25);
+            transform: translateY(-2px)
+        }
+
+        .btn-g {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--sub);
+            padding: 15px 32px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            cursor: none;
+            transition: all .3s;
+            text-decoration: none
+        }
+
+        .btn-g:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.3)
+        }
+
+        /* Phone UI */
+        .hero-phone {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .phone-wrap {
+            width: 320px;
+            position: relative
+        }
+
+        .phone-outer {
+            background: var(--bg3);
+            border-radius: 52px;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(109, 212, 168, 0.08);
+            animation: phoneFloat 6s ease-in-out infinite
+        }
+
+        @keyframes phoneFloat {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-16px)
+            }
+        }
+
+        .phone-inner {
+            background: #f8f9fa;
+            border-radius: 40px;
+            overflow: hidden;
+            min-height: 580px
+        }
+
+        .phone-status {
+            background: #f8f9fa;
+            padding: 14px 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .status-time {
+            font-size: 12px;
+            font-weight: 700;
+            color: #111
+        }
+
+        .phone-notch-bar {
+            width: 80px;
+            height: 8px;
+            background: #111;
+            border-radius: 20px;
+            margin: 0 auto
+        }
+
+        .p-body {
+            padding: 20px
+        }
+
+        .p-header-card {
+            background: linear-gradient(135deg, #1a3d2e, #0d2a1e);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px
+        }
+
+        .p-greet {
+            font-size: 11px;
+            color: rgba(184, 240, 216, 0.6);
+            margin-bottom: 4px
+        }
+
+        .p-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px
+        }
+
+        .p-alerts {
+            font-size: 11px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .p-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #444;
+            letter-spacing: .5px;
+            margin-bottom: 10px
+        }
+
+        .p-appointment {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent)
+        }
+
+        .p-doc-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 2px
+        }
+
+        .p-doc-spec {
+            font-size: 11px;
+            color: #888
+        }
+
+        .p-doc-time {
+            font-size: 11px;
+            color: var(--accent);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .p-vitals {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px
+        }
+
+        .p-vital {
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center
+        }
+
+        .p-vital-val {
+            font-size: 17px;
+            font-weight: 700;
+            color: #222;
+            line-height: 1
+        }
+
+        .p-vital-lbl {
+            font-size: 9px;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 3px
+        }
+
+        .p-med-list {}
+
+        .p-med {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0
+        }
+
+        .p-med:last-child {
+            border-bottom: none
+        }
+
+        .p-med-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .p-med-name {
+            flex: 1;
+            font-size: 12px;
+            color: #444
+        }
+
+        .p-med-time {
+            font-size: 10px;
+            color: #aaa;
+            font-family: var(--font-m)
+        }
+
+        .p-med-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(109, 212, 168, 0.15);
+            border: 1.5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .p-med-check::after {
+            content: '✓';
+            font-size: 9px;
+            color: var(--accent)
+        }
+
+        /* Floating badges */
+        .float-badge {
+            position: absolute;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--sub);
+            white-space: nowrap;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3)
+        }
+
+        .float-badge .b-num {
+            font-family: var(--font-d);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .fb1 {
+            top: 80px;
+            left: -100px;
+            animation: fbFloat 7s ease-in-out infinite
+        }
+
+        .fb2 {
+            bottom: 100px;
+            right: -80px;
+            animation: fbFloat 9s ease-in-out infinite 1s
+        }
+
+        @keyframes fbFloat {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        /* FEATURES */
+        section.features {
+            padding: 100px 60px;
+            background: var(--bg2)
+        }
+
+        .section-tag {
+            font-family: var(--font-m);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent)
+        }
+
+        .section-title {
+            font-family: var(--font-d);
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.05;
+            letter-spacing: -2px
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .features-inner {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .feat-intro {
+            margin-bottom: 60px
+        }
+
+        .feats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border)
+        }
+
+        .feat {
+            background: var(--bg2);
+            padding: 52px 48px;
+            position: relative;
+            overflow: hidden;
+            transition: background .3s
+        }
+
+        .feat:hover {
+            background: rgba(109, 212, 168, 0.02)
+        }
+
+        .feat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height .4s ease
+        }
+
+        .feat:hover::before {
+            height: 100%
+        }
+
+        .feat-num {
+            font-family: var(--font-m);
+            font-size: 11px;
+            color: rgba(109, 212, 168, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 20px
+        }
+
+        .feat-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block
+        }
+
+        .feat-name {
+            font-family: var(--font-d);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            letter-spacing: -.5px
+        }
+
+        .feat-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--sub);
+            font-weight: 300
+        }
+
+        /* JOURNEY */
+        section.journey {
+            padding: 100px 60px;
+            background: var(--bg)
+        }
+
+        .journey-inner {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .timeline {
+            margin-top: 60px;
+            position: relative;
+            padding-left: 40px
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(var(--accent), transparent)
+        }
+
+        .tl-item {
+            position: relative;
+            padding-bottom: 52px
+        }
+
+        .tl-item:last-child {
+            padding-bottom: 0
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -44px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg);
+            box-shadow: 0 0 0 4px rgba(109, 212, 168, 0.15)
+        }
+
+        .tl-step {
+            font-family: var(--font-m);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(109, 212, 168, 0.5);
+            margin-bottom: 8px
+        }
+
+        .tl-title {
+            font-family: var(--font-d);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -.5px
+        }
+
+        .tl-desc {
+            font-size: 15px;
+            color: var(--sub);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 600px
+        }
+
+        /* WELLNESS */
+        section.wellness {
+            padding: 100px 60px;
+            background: var(--bg2)
+        }
+
+        .wellness-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .wellness-content {}
+
+        .wellness-items {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px
+        }
+
+        .w-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg3);
+            transition: all .3s
+        }
+
+        .w-item:hover {
+            border-color: rgba(109, 212, 168, 0.2);
+            background: rgba(109, 212, 168, 0.02)
+        }
+
+        .w-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(109, 212, 168, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px
+        }
+
+        .w-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-size: 15px
+        }
+
+        .w-desc {
+            font-size: 13px;
+            color: var(--sub);
+            line-height: 1.7;
+            font-weight: 300
+        }
+
+        /* Health tracker visual */
+        .tracker-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px
+        }
+
+        .tc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px
+        }
+
+        .tc-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text)
+        }
+
+        .tc-period {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        .health-score {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0% 78%, rgba(255, 255, 255, 0.05) 78%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative
+        }
+
+        .score-inner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg3);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .score-val {
+            font-family: var(--font-d);
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text)
+        }
+
+        .score-info {
+            flex: 1
+        }
+
+        .score-label {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: var(--font-m);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px
+        }
+
+        .score-desc {
+            font-size: 13px;
+            color: var(--accent)
+        }
+
+        .week-steps {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            align-items: flex-end
+        }
+
+        .step-bar {
+            background: rgba(109, 212, 168, 0.15);
+            border-radius: 4px 4px 0 0;
+            position: relative
+        }
+
+        .step-bar.good {
+            background: var(--accent)
+        }
+
+        .step-lbl {
+            font-size: 8px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 4px;
+            font-family: var(--font-m)
+        }
+
+        .med-reminders {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px
+        }
+
+        .mr-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 16px
+        }
+
+        .mr-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+        }
+
+        .mr-item:last-child {
+            border-bottom: none
+        }
+
+        .mr-time {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: var(--font-m);
+            min-width: 50px
+        }
+
+        .mr-med {
+            flex: 1;
+            font-size: 13px;
+            color: var(--sub)
+        }
+
+        .mr-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-family: var(--font-m)
+        }
+
+        .mr-due {
+            background: rgba(240, 184, 120, 0.12);
+            color: #f0b878
+        }
+
+        .mr-done {
+            background: rgba(109, 212, 168, 0.12);
+            color: var(--accent)
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 60px;
+            background: var(--bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(109, 212, 168, 0.06) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative
+        }
+
+        .cta-title {
+            font-family: var(--font-d);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: -2px;
+            line-height: 1.05
+        }
+
+        .cta-title em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .cta-desc {
+            font-size: 17px;
+            color: var(--sub);
+            margin-top: 20px;
+            line-height: 1.8;
+            font-weight: 300
+        }
+
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 48px
+        }
+
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .fl {
+            font-family: var(--font-d);
+            font-size: 18px;
+            color: var(--text)
+        }
+
+        .fl span {
+            color: var(--accent);
+            font-style: italic
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color .3s
+        }
+
+        .footer-links a:hover {
+            color: var(--text)
+        }
+
+        .fc {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .8s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .rd1 {
+            transition-delay: .1s
+        }
+
+        .rd2 {
+            transition-delay: .2s
+        }
+
+        .rd3 {
+            transition-delay: .3s
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor" id="cursor"></div>
+
+    <nav>
+        <a href="index.html" style="text-decoration:none"><span class="logo-text">Media<span>Ssisst</span></span></a>
+        <a href="index.html" class="nav-back">← Back to Home</a>
+        <span class="nav-tag">HealthBuddy</span>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="app-pill"><span class="pulse"></span> For Patients</div>
+            <h1>Your Health,<br>Your <em>Journey,</em><br>Your Way.</h1>
+            <p class="hero-desc">HealthBuddy is your personal health companion — book appointments, track vitals, manage
+                prescriptions, and stay on top of your wellness, all from one beautiful app.</p>
+            <div class="hero-actions">
+                <a href="#" class="btn-p">Download HealthBuddy →</a>
+                <a href="#features" class="btn-g">Explore Features</a>
+            </div>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="hero-phone">
+            <div class="phone-wrap">
+                <div class="float-badge fb1">
+                    <div>
+                        <div class="b-num">6.4k</div>
+                        <div style="font-size:10px;color:var(--muted);font-family:var(--font-m)">Steps Today</div>
+                    </div>
+                </div>
+                <div class="phone-outer">
+                    <div class="phone-inner">
+                        <div class="phone-status">
+                            <div class="status-time">9:41</div>
+                            <div class="phone-notch-bar"></div>
+                            <div style="font-size:10px;color:#111">●●●</div>
+                        </div>
+                        <div class="p-body">
+                            <div class="p-header-card">
+                                <div class="p-greet">Good morning ☀️</div>
+                                <div class="p-name">Aarav Mehta</div>
+                                <div class="p-alerts">● 1 appointment · 2 medicines due</div>
+                            </div>
+                            <div class="p-section-title">Today's Appointment</div>
+                            <div class="p-appointment">
+                                <div class="p-doc-name">Dr. Priya Menon</div>
+                                <div class="p-doc-spec">Cardiology · Apollo Clinic</div>
+                                <div class="p-doc-time">📅 Today · 11:30 AM</div>
+                            </div>
+                            <div class="p-section-title">Vitals</div>
+                            <div class="p-vitals">
+                                <div class="p-vital">
+                                    <div class="p-vital-val">72</div>
+                                    <div class="p-vital-lbl">HR</div>
+                                </div>
+                                <div class="p-vital">
+                                    <div class="p-vital-val">98.4</div>
+                                    <div class="p-vital-lbl">Temp</div>
+                                </div>
+                                <div class="p-vital">
+                                    <div class="p-vital-val">6.4k</div>
+                                    <div class="p-vital-lbl">Steps</div>
+                                </div>
+                            </div>
+                            <div class="p-section-title">Medicine Reminders</div>
+                            <div class="p-med-list">
+                                <div class="p-med">
+                                    <div class="p-med-dot" style="background:#f07ab8"></div>
+                                    <div class="p-med-name">Metformin 500mg</div>
+                                    <div class="p-med-time">8 AM</div>
+                                    <div class="p-med-check"></div>
+                                </div>
+                                <div class="p-med">
+                                    <div class="p-med-dot" style="background:#7ab8f0"></div>
+                                    <div class="p-med-name">Atorvastatin 10mg</div>
+                                    <div class="p-med-time">2 PM</div>
+                                </div>
+                                <div class="p-med">
+                                    <div class="p-med-dot" style="background:var(--accent)"></div>
+                                    <div class="p-med-name">Paracetamol</div>
+                                    <div class="p-med-time">8 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-badge fb2">
+                    <div>
+                        <div class="b-num" style="color:var(--accent)">98%</div>
+                        <div style="font-size:10px;color:var(--muted);font-family:var(--font-m)">Med Adherence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features-inner">
+            <div class="feat-intro">
+                <div class="section-tag reveal">Features</div>
+                <h2 class="section-title reveal rd1">Everything Your Health<br><em>Deserves.</em></h2>
+            </div>
+            <div class="feats">
+                <div class="feat reveal">
+                    <div class="feat-num">01</div>
+                    <span class="feat-icon">📅</span>
+                    <div class="feat-name">Doctor Appointments</div>
+                    <p class="feat-desc">Book, reschedule, or cancel appointments with doctors in your HealthBuddy
+                        network. Get reminders so you never miss a visit.</p>
+                </div>
+                <div class="feat reveal rd1">
+                    <div class="feat-num">02</div>
+                    <span class="feat-icon">📋</span>
+                    <div class="feat-name">Health Records</div>
+                    <p class="feat-desc">Your complete medical history — prescriptions, lab reports, diagnoses — all
+                        stored securely and accessible anytime, anywhere.</p>
+                </div>
+                <div class="feat reveal">
+                    <div class="feat-num">03</div>
+                    <span class="feat-icon">💊</span>
+                    <div class="feat-name">Medicine Reminders</div>
+                    <p class="feat-desc">Never miss a dose. Smart reminders adapt to your schedule and track your
+                        medication adherence with beautiful progress visuals.</p>
+                </div>
+                <div class="feat reveal rd1">
+                    <div class="feat-num">04</div>
+                    <span class="feat-icon">❤️</span>
+                    <div class="feat-name">Wellness Tracking</div>
+                    <p class="feat-desc">Monitor your heart rate, steps, sleep, and temperature. HealthBuddy surfaces
+                        insights that help you stay ahead of your health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="journey" id="journey">
+        <div class="journey-inner">
+            <div class="section-tag reveal">Your Experience</div>
+            <h2 class="section-title reveal rd1">From Symptom<br><em>to Recovery.</em></h2>
+            <div class="timeline">
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-step">Step 01</div>
+                    <div class="tl-title">Notice a symptom</div>
+                    <p class="tl-desc">Log your symptoms in HealthBuddy and get an AI-powered initial assessment. Know
+                        when it's time to see a doctor.</p>
+                </div>
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-step">Step 02</div>
+                    <div class="tl-title">Book an appointment</div>
+                    <p class="tl-desc">Find and book the right doctor in seconds. Integrated with ClinXpert so your
+                        doctor is fully prepared before you arrive.</p>
+                </div>
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-step">Step 03</div>
+                    <div class="tl-title">Receive your prescription</div>
+                    <p class="tl-desc">Your digital prescription arrives instantly in HealthBuddy after consultation.
+                        Auto-forwarded to PharmaMate for delivery.</p>
+                </div>
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-step">Step 04</div>
+                    <div class="tl-title">Track your recovery</div>
+                    <p class="tl-desc">Monitor vitals, complete medicine reminders, and share progress with your doctor
+                        — all until you're back to 100%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WELLNESS -->
+    <section class="wellness">
+        <div class="wellness-grid">
+            <div class="wellness-content reveal">
+                <div class="section-tag">Wellness Tools</div>
+                <h2 class="section-title">Track What<br><em>Matters Most.</em></h2>
+                <div class="wellness-items">
+                    <div class="w-item">
+                        <div class="w-icon">🏃</div>
+                        <div>
+                            <div class="w-title">Activity Tracking</div>
+                            <p class="w-desc">Steps, distance, and calories — all tracked passively and visualized in
+                                beautiful weekly charts.</p>
+                        </div>
+                    </div>
+                    <div class="w-item">
+                        <div class="w-icon">💤</div>
+                        <div>
+                            <div class="w-title">Sleep Analysis</div>
+                            <p class="w-desc">Understand your sleep quality and get personalized recommendations for
+                                better rest.</p>
+                        </div>
+                    </div>
+                    <div class="w-item">
+                        <div class="w-icon">📊</div>
+                        <div>
+                            <div class="w-title">Health Score</div>
+                            <p class="w-desc">A composite score of your vitals, activity, sleep, and medication
+                                adherence — at a glance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal rd2">
+                <div class="tracker-card">
+                    <div class="tc-header">
+                        <div class="tc-title">Weekly Health Score</div>
+                        <div class="tc-period">This Week</div>
+                    </div>
+                    <div class="health-score">
+                        <div class="score-circle">
+                            <div class="score-inner">
+                                <div class="score-val">78</div>
+                            </div>
+                        </div>
+                        <div class="score-info">
+                            <div class="score-label">Overall Score</div>
+                            <div class="score-desc">Good — Keep it up! 💪</div>
+                            <div style="font-size:12px;color:var(--muted);margin-top:4px">+5 from last week</div>
+                        </div>
+                    </div>
+                    <div
+                        style="font-size:10px;color:var(--muted);font-family:var(--font-m);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">
+                        Daily Steps</div>
+                    <div class="week-steps">
+                        <div>
+                            <div class="step-bar" style="height:40px"></div>
+                            <div class="step-lbl">M</div>
+                        </div>
+                        <div>
+                            <div class="step-bar good" style="height:55px"></div>
+                            <div class="step-lbl">T</div>
+                        </div>
+                        <div>
+                            <div class="step-bar" style="height:30px"></div>
+                            <div class="step-lbl">W</div>
+                        </div>
+                        <div>
+                            <div class="step-bar good" style="height:60px"></div>
+                            <div class="step-lbl">T</div>
+                        </div>
+                        <div>
+                            <div class="step-bar good" style="height:70px"></div>
+                            <div class="step-lbl">F</div>
+                        </div>
+                        <div>
+                            <div class="step-bar" style="height:45px"></div>
+                            <div class="step-lbl">S</div>
+                        </div>
+                        <div>
+                            <div class="step-bar" style="height:35px"></div>
+                            <div class="step-lbl">S</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="med-reminders">
+                    <div class="mr-title">Today's Reminders</div>
+                    <div class="mr-item">
+                        <div class="mr-time">8:00 AM</div>
+                        <div class="mr-med">Metformin 500mg</div>
+                        <div class="mr-badge mr-done">Done</div>
+                    </div>
+                    <div class="mr-item">
+                        <div class="mr-time">2:00 PM</div>
+                        <div class="mr-med">Atorvastatin 10mg</div>
+                        <div class="mr-badge mr-due">Due</div>
+                    </div>
+                    <div class="mr-item">
+                        <div class="mr-time">8:00 PM</div>
+                        <div class="mr-med">Paracetamol 500mg</div>
+                        <div class="mr-badge mr-due">Due</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner">
+            <div class="section-tag reveal" style="justify-content:center;--accent:var(--accent)">Download Now</div>
+            <h2 class="cta-title reveal rd1">Take Control of<br>Your <em>Health Today</em></h2>
+            <p class="cta-desc reveal rd2">Join 10,000+ patients who manage their health with confidence using
+                HealthBuddy. Free to download, free to use.</p>
+            <div class="cta-actions reveal rd3">
+                <a href="#" class="btn-p">Download Free →</a>
+                <a href="index.html" class="btn-g">Back to Ecosystem</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="fl">Media<span>Ssisst</span></span>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="clinxpert.html">ClinXpert</a>
+            <a href="pharmamate.html">PharmaMate</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <span class="fc">© 2025 MediaSsisst</span>
+    </footer>
+
+    <script>
+        document.addEventListener('mousemove', e => { const c = document.getElementById('cursor'); c.style.left = e.clientX - 6 + 'px'; c.style.top = e.clientY - 6 + 'px' });
+        const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target) } }) }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
+</body>
+
+</html>

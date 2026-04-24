@@ -34,32 +34,36 @@ export default function Connect() {
       ></motion.div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mb-4">Get In Touch</h2>
-          <p className="text-xl text-muted font-body">Want to know more? Reach out and we'll get back to you.</p>
+        <div className="text-center mb-16 flex flex-col items-center">
+          <div className="section-tag">Contact</div>
+          <h2 className="text-4xl md:text-[56px] font-bold font-heading text-text mb-4 leading-none tracking-tight">
+            Get In <br />
+            <em>Touch.</em>
+          </h2>
+          <p className="text-lg text-sub font-body max-w-2xl mt-4 font-light">Want to know more? Reach out and we'll get back to you.</p>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-surface/50 backdrop-blur-xl border border-primary/20 rounded-3xl p-8 md:p-10 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+          className="bg-surface/50 backdrop-blur-xl border border-white/5 rounded-3xl p-8 md:p-10 shadow-2xl"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-muted">Full Name</label>
-                <input required type="text" id="name" className="w-full bg-dark/50 border border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-white outline-none transition-colors" placeholder="John Doe" />
+                <label htmlFor="name" className="text-[11px] uppercase tracking-widest font-mono text-muted">Full Name</label>
+                <input required type="text" id="name" className="w-full bg-dark border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-text font-body outline-none transition-colors cursor-none" placeholder="John Doe" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-muted">Email Address</label>
-                <input required type="email" id="email" className="w-full bg-dark/50 border border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-white outline-none transition-colors" placeholder="john@example.com" />
+                <label htmlFor="email" className="text-[11px] uppercase tracking-widest font-mono text-muted">Email Address</label>
+                <input required type="email" id="email" className="w-full bg-dark border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-text font-body outline-none transition-colors cursor-none" placeholder="john@example.com" />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="role" className="text-sm font-medium text-muted">Your Role</label>
-              <select id="role" className="w-full bg-dark/50 border border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-white outline-none transition-colors appearance-none">
+              <label htmlFor="role" className="text-[11px] uppercase tracking-widest font-mono text-muted">Your Role</label>
+              <select id="role" className="w-full bg-dark border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-text font-body outline-none transition-colors appearance-none cursor-none">
                 <option value="doctor">Doctor</option>
                 <option value="patient">Patient</option>
                 <option value="pharmacy">Pharmacy</option>
@@ -69,18 +73,18 @@ export default function Connect() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-muted">Message</label>
-              <textarea required id="message" rows={4} className="w-full bg-dark/50 border border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-white outline-none transition-colors resize-none" placeholder="Tell us how we can help..."></textarea>
+              <label htmlFor="message" className="text-[11px] uppercase tracking-widest font-mono text-muted">Message</label>
+              <textarea required id="message" rows={4} className="w-full bg-dark border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3 text-text font-body outline-none transition-colors resize-none cursor-none" placeholder="Tell us how we can help..."></textarea>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-r from-primary to-accent py-4 text-dark font-bold text-lg transition-transform hover:scale-[1.01] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="btn-p w-full rounded-xl mt-4"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
-                  <Loader2 className="w-6 h-6 animate-spin" /> Sending...
+                  <Loader2 className="w-5 h-5 animate-spin" /> Sending...
                 </span>
               ) : (
                 <span className="flex items-center justify-center gap-2">

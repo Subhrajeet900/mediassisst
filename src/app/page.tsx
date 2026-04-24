@@ -8,7 +8,6 @@ const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
 const About = dynamic(() => import("@/components/About"), { ssr: false });
 import AppShowcase from "@/components/AppShowcase";
 import HowItWorks from "@/components/HowItWorks";
-import Team from "@/components/Team";
 import Connect from "@/components/Connect";
 import Footer from "@/components/Footer";
 
@@ -22,7 +21,6 @@ export default function Home() {
           <About />
           <AppShowcase />
           <HowItWorks />
-          <Team />
           <Connect />
           <Footer />
         </div>

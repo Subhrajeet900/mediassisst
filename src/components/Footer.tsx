@@ -1,6 +1,5 @@
 "use client";
 
-import { Activity } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,13 +9,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Left Column */}
           <div className="space-y-6 text-center md:text-left">
-            <Link href="#home" className="flex items-center justify-center md:justify-start gap-2 group">
-              <div className="relative flex items-center justify-center">
-                <Activity className="text-primary w-6 h-6" />
-              </div>
-              <span className="font-heading text-2xl font-bold tracking-tight">
-                <span className="text-[#00C896]">Media</span>
-                <span className="text-white">Ssisst</span>
+            <Link href="#home" className="flex items-center justify-center md:justify-start gap-2 group cursor-none">
+              <span className="font-heading text-2xl font-bold tracking-tight text-text">
+                Media<span className="text-primary italic font-normal">Ssisst</span>
               </span>
             </Link>
             <p className="text-muted text-sm max-w-xs mx-auto md:mx-0">
@@ -53,7 +48,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <h4 className="text-white font-heading font-bold mb-6 text-lg">Our Apps</h4>
             <ul className="space-y-4">
-              <li><a href="#clinxpert" className="text-muted hover:text-[#00c896] transition-colors text-sm flex items-center justify-center md:justify-start gap-2"><span>🩺</span> ClinXpert</a></li>
+              <li><a href="#clinicxpert" className="text-muted hover:text-[#00c896] transition-colors text-sm flex items-center justify-center md:justify-start gap-2"><span>🩺</span> ClinicXpert</a></li>
               <li><a href="#healthbuddy" className="text-muted hover:text-[#00a86b] transition-colors text-sm flex items-center justify-center md:justify-start gap-2"><span>❤️</span> HealthBuddy</a></li>
               <li><a href="#pharmamate" className="text-muted hover:text-[#1a7a4a] transition-colors text-sm flex items-center justify-center md:justify-start gap-2"><span>💊</span> PharmaMate</a></li>
             </ul>

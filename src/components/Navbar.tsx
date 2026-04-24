@@ -18,7 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -26,45 +26,39 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
-        scrolled ? "bg-dark/90 backdrop-blur-xl shadow-lg border-b border-primary/20" : "bg-transparent py-4"
+        "fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-[20px] bg-dark/85 border-b cursor-none",
+        scrolled ? "border-white/10 shadow-lg py-4" : "border-transparent py-6"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="#home" className="flex items-center gap-2 group">
-            <div className="relative flex items-center justify-center">
-              <Activity className="text-primary w-6 h-6" />
-              <div className="absolute w-2 h-2 rounded-full bg-accent -top-1 -right-1 animate-ping"></div>
-              <div className="absolute w-2 h-2 rounded-full bg-primary -top-1 -right-1"></div>
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Media</span>
-              <span className="text-foreground">Ssisst</span>
+          <Link href="#home" className="flex items-center gap-2 group cursor-none">
+            <span className="font-heading text-2xl font-bold tracking-tight text-text">
+              Media<span className="text-primary italic font-normal">Ssisst</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-muted hover:text-primary transition-colors text-sm font-medium"
+                className="text-sub hover:text-primary transition-colors text-xs tracking-widest uppercase font-mono cursor-none"
               >
                 {link.name}
               </a>
             ))}
-            <a
+          </div>
+
+          {/* Desktop Action */}
+          <div className="hidden md:flex items-center">
+             <a
               href="#apps"
-              className="relative group p-[1px] rounded-full overflow-hidden bg-gradient-to-r from-primary via-accent to-primary animate-gradient-x"
+              className="text-primary border border-primary/20 bg-primary/5 px-4 py-1.5 text-[11px] tracking-[2px] uppercase font-mono hover:bg-primary/10 transition-colors cursor-none"
             >
-              <div className="bg-dark/90 px-6 py-2 rounded-full group-hover:bg-dark/60 transition-colors">
-                <span className="font-semibold text-sm bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center gap-2">
-                  Explore Ecosystem <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </span>
-              </div>
+              Ecosystem
             </a>
           </div>
 
@@ -72,7 +66,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground hover:text-primary transition-colors p-2"
+              className="text-foreground hover:text-primary transition-colors p-2 cursor-none"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -87,7 +81,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "100vh" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-dark/95 backdrop-blur-xl border-t border-primary/20 overflow-hidden"
+            className="md:hidden bg-dark/95 backdrop-blur-xl border-t border-white/10 overflow-hidden cursor-none"
           >
             <div className="px-4 pt-8 pb-3 space-y-4 flex flex-col items-center">
               {navLinks.map((link) => (
@@ -95,20 +89,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-3 py-4 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-surface/50"
+                  className="block w-full text-center px-3 py-4 text-sm font-mono tracking-widest uppercase text-text hover:text-primary cursor-none"
                 >
                   {link.name}
                 </a>
               ))}
-              <div className="pt-4 w-full px-4">
-                <a
-                  href="#apps"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center w-full bg-primary hover:bg-accent text-dark font-bold py-3 px-4 rounded-full transition-colors"
-                >
-                  Explore Ecosystem →
-                </a>
-              </div>
             </div>
           </motion.div>
         )}

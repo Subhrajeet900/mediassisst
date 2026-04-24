@@ -1,6 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
+
+const StoreBadge = ({ type }: { type: 'apple' | 'google' }) => {
+  if (type === 'apple') {
+    return (
+      <a href="#" className="flex items-center gap-3 bg-black hover:bg-black/80 text-white px-5 py-2.5 rounded-2xl border border-white/20 hover:border-white/50 transition-all shadow-lg hover:scale-105">
+        <svg viewBox="0 0 384 512" fill="currentColor" className="w-7 h-7">
+          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+        </svg>
+        <div className="text-left">
+          <div className="text-[10px] leading-none mb-1 text-white/70">Download on the</div>
+          <div className="text-lg font-semibold leading-none tracking-tight">App Store</div>
+        </div>
+      </a>
+    );
+  }
+  return (
+    <a href="#" className="flex items-center gap-3 bg-black hover:bg-black/80 text-white px-5 py-2.5 rounded-2xl border border-white/20 hover:border-white/50 transition-all shadow-lg hover:scale-105">
+      <svg viewBox="0 0 512 512" fill="currentColor" className="w-7 h-7">
+        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+      </svg>
+      <div className="text-left">
+        <div className="text-[10px] leading-none mb-1 text-white/70">GET IT ON</div>
+        <div className="text-lg font-semibold leading-none tracking-tight">Google Play</div>
+      </div>
+    </a>
+  );
+};
 
 export default function AppShowcase() {
 
@@ -36,7 +64,7 @@ export default function AppShowcase() {
     .pwr { right: -3px; top: 108px; width: 3px; height: 44px; }
     .home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 3px; z-index: 10; }
     
-    /* ── ClinXpert screen ── */
+    /* ── ClinicXpert screen ── */
     .cx-screen{background:#0b1e14;width:100%;height:100%;font-family:system-ui,sans-serif;position:relative;}
     .cx-status{display:flex;justify-content:space-between;align-items:center;padding:52px 16px 0;font-size:9px;color:#aaa;}
     .cx-header{padding:8px 16px 10px;display:flex;justify-content:space-between;align-items:center;}
@@ -126,14 +154,47 @@ export default function AppShowcase() {
     <section id="apps" className="py-24 bg-surface relative">
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mb-4">Our Ecosystem Apps</h2>
-          <p className="text-xl text-muted font-body">Three powerful apps. One unified platform.</p>
+        <div className="text-center mb-16 flex flex-col items-center">
+          <div className="section-tag">Ecosystem</div>
+          <h2 className="text-4xl md:text-[56px] font-bold font-heading text-text mb-4 leading-none tracking-tight">
+            Our Ecosystem <br />
+            <em>Three Powerful Apps.</em>
+          </h2>
+          <p className="text-lg text-sub font-body max-w-2xl mt-4 font-light">One unified platform to connect doctors, patients, and pharmacies.</p>
         </div>
 
-        <div className="phones-wrap">
-          {/* Card 1: ClinXpert */}
-          <div className="phone-card-container group">
+        <div className="flex flex-col gap-32">
+          {/* Card 1: ClinicXpert */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24"
+          >
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start gap-2 xl:gap-8">
+              {/* Splash Phone */}
+              <div className="phone-card-container group hidden lg:flex transform translate-y-12 scale-90 xl:scale-100 origin-right">
+                <div className="phone">
+                  <div className="frame">
+                    <div className="side-btn vol1"></div>
+                    <div className="side-btn vol2"></div>
+                    <div className="side-btn pwr"></div>
+                    <div className="screen bg-[#0b1e14] flex flex-col items-center justify-center">
+                      <div className="dynamic-island"></div>
+                      <div className="flex flex-col items-center justify-center h-full space-y-4">
+                        <div className="w-20 h-20 rounded-3xl bg-[#00c896]/10 flex items-center justify-center mb-2 border border-[#00c896]/20 shadow-[0_0_30px_rgba(0,200,150,0.15)]">
+                           <span className="text-5xl font-heading font-bold text-[#00c896]">C</span>
+                        </div>
+                        <h3 className="text-3xl font-heading font-bold text-[#00c896] tracking-tight mt-4">ClinicXpert</h3>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#6ee6b4]/70">Doctors in Control</p>
+                      </div>
+                      <div className="home-bar"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="phone-card-container group scale-90 xl:scale-100 origin-left">
             <div className="phone">
               <div className="frame">
                 <div className="side-btn vol1"></div>
@@ -144,7 +205,7 @@ export default function AppShowcase() {
                     <div className="dynamic-island"></div>
                     <div className="cx-status"><span>9:41</span><span>●●●</span></div>
                     <div className="cx-header">
-                      <div className="cx-logo">ClinXpert</div>
+                      <div className="cx-logo">ClinicXpert</div>
                       <div className="cx-avatar">DK</div>
                     </div>
                     <div className="cx-greeting">Good morning,<strong>Dr. Kapoor</strong></div>
@@ -182,26 +243,49 @@ export default function AppShowcase() {
                 </div>
               </div>
             </div>
-            {/* Context/Description Card underneath */}
-            <div className="bg-dark/80 backdrop-blur-xl border border-primary/20 p-6 rounded-2xl w-full text-center transition-all">
-              <h3 className="text-2xl font-bold text-primary mb-1">ClinXpert</h3>
-              <p className="text-accent text-sm font-semibold mb-4 uppercase tracking-wider">Doctors in Control</p>
-              <ul className="text-sm text-foreground space-y-2 mb-4 text-left grid grid-cols-1 gap-1">
-                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Patient Monitoring</li>
-                <li className="flex items-center gap-2"><span className="text-primary">✓</span> EHR Management</li>
-                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Smart Diagnostics</li>
-              </ul>
-              <p className="text-xs text-muted mb-6 text-left leading-relaxed">
-                ClinXpert empowers doctors with real-time patient oversight, deep clinical analytics, and AI-assisted diagnostics — putting complete control back in the hands of healthcare professionals.
-              </p>
-              <a href="https://clinicxpert.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-dark px-6 py-2 rounded-full text-sm font-bold transition-colors">
-                Read More →
-              </a>
+              </div>
             </div>
-          </div>
+            
+            <div className="w-full lg:w-1/2 flex flex-col items-start text-left space-y-6 lg:pl-10">
+              <h3 className="text-4xl md:text-5xl font-bold text-primary font-heading tracking-tight">ClinicXpert</h3>
+              <p className="text-xl text-accent font-mono uppercase tracking-widest text-sm">Doctors in Control</p>
+              <p className="text-lg text-sub font-light leading-relaxed max-w-lg">
+                ClinicXpert empowers doctors with real-time patient oversight, deep clinical analytics, and AI-assisted diagnostics — putting complete control back in the hands of healthcare professionals. Reduce administrative overhead and focus on what matters most: patient care.
+              </p>
+              
+              <ul className="text-base text-text space-y-3 my-6">
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-primary w-5 h-5" /> <span>Real-time Patient Monitoring & Alerts</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-primary w-5 h-5" /> <span>Seamless EHR Management & Integration</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-primary w-5 h-5" /> <span>AI-Assisted Diagnostics & Insights</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-primary w-5 h-5" /> <span>Automated Prescription Generation</span></li>
+              </ul>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
+                <a href="https://clinicxpert.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center">
+                  Explore ClinicXpert
+                </a>
+              </div>
+              
+              <div className="pt-6 border-t border-white/5 w-full mt-6 max-w-md">
+                <p className="text-[10px] text-muted uppercase tracking-widest font-mono mb-4">Available on</p>
+                <div className="flex flex-row gap-4">
+                  <StoreBadge type="apple" />
+                  <StoreBadge type="google" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Card 2: HealthBuddy */}
-          <div className="phone-card-container group">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24"
+          >
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end gap-2 xl:gap-8">
+              <div className="phone-card-container group scale-90 xl:scale-100 origin-right">
             <div className="phone">
               <div className="frame">
                 <div className="side-btn vol1"></div>
@@ -250,25 +334,93 @@ export default function AppShowcase() {
                 </div>
               </div>
             </div>
-            <div className="bg-dark/80 backdrop-blur-xl border border-primary/20 p-6 rounded-2xl w-full text-center transition-all">
-              <h3 className="text-2xl font-bold text-[#00a86b] mb-1">HealthBuddy</h3>
-              <p className="text-accent text-sm font-semibold mb-4 uppercase tracking-wider">Your Personal Companion</p>
-              <ul className="text-sm text-foreground space-y-2 mb-4 text-left grid grid-cols-1 gap-1">
-                <li className="flex items-center gap-2"><span className="text-[#00a86b]">✓</span> Doctor Appointments</li>
-                <li className="flex items-center gap-2"><span className="text-[#00a86b]">✓</span> Health Records</li>
-                <li className="flex items-center gap-2"><span className="text-[#00a86b]">✓</span> Wellness Tracking</li>
-              </ul>
-              <p className="text-xs text-muted mb-6 text-left leading-relaxed">
-                HealthBuddy is the patient's ultimate companion — book appointments, manage prescriptions, track vitals, and stay on top of your health journey, all from one place.
-              </p>
-              <a href="https://healthbuddy-md.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#00a86b]/10 hover:bg-[#00a86b] border border-[#00a86b] text-[#00a86b] hover:text-white px-6 py-2 rounded-full text-sm font-bold transition-colors">
-                Read More →
-              </a>
+              </div>
+              {/* Splash Phone */}
+              <div className="phone-card-container group hidden lg:flex transform translate-y-12 scale-90 xl:scale-100 origin-left">
+                <div className="phone">
+                  <div className="frame">
+                    <div className="side-btn vol1"></div>
+                    <div className="side-btn vol2"></div>
+                    <div className="side-btn pwr"></div>
+                    <div className="screen bg-[#00a86b] flex flex-col items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#00d084]/20 to-transparent"></div>
+                      <div className="dynamic-island" style={{background: '#000'}}></div>
+                      <div className="flex flex-col items-center justify-center h-full space-y-4 relative z-10">
+                        <div className="w-20 h-20 rounded-3xl bg-white/10 flex items-center justify-center mb-2 border border-white/20 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                           <span className="text-5xl font-heading font-bold text-white">H</span>
+                        </div>
+                        <h3 className="text-3xl font-heading font-bold text-white tracking-tight mt-4">HealthBuddy</h3>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/80">Personal Companion</p>
+                      </div>
+                      <div className="home-bar" style={{ background: 'rgba(255,255,255,0.4)' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div className="w-full lg:w-1/2 flex flex-col items-start text-left space-y-6 lg:pr-10">
+              <h3 className="text-4xl md:text-5xl font-bold text-[#00a86b] font-heading tracking-tight">HealthBuddy</h3>
+              <p className="text-xl text-[#00a86b] font-mono uppercase tracking-widest text-sm opacity-80">Your Personal Companion</p>
+              <p className="text-lg text-sub font-light leading-relaxed max-w-lg">
+                HealthBuddy is the ultimate patient companion. Book appointments, manage prescriptions, track vitals, and stay on top of your health journey—all from one highly secure, easy-to-use application designed for everyone.
+              </p>
+              
+              <ul className="text-base text-text space-y-3 my-6">
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#00a86b] w-5 h-5" /> <span>Instant Doctor Appointments</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#00a86b] w-5 h-5" /> <span>Centralized Health Records</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#00a86b] w-5 h-5" /> <span>Automated Medicine Reminders</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#00a86b] w-5 h-5" /> <span>Vitals & Wellness Tracking</span></li>
+              </ul>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
+                <a href="https://healthbuddy-md.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center" style={{ background: '#00a86b', color: '#0a0a0b', borderColor: '#00a86b' }}>
+                  Explore HealthBuddy
+                </a>
+              </div>
+              
+              <div className="pt-6 border-t border-white/5 w-full mt-6 max-w-md">
+                <p className="text-[10px] text-muted uppercase tracking-widest font-mono mb-4">Available on</p>
+                <div className="flex flex-row gap-4">
+                  <StoreBadge type="apple" />
+                  <StoreBadge type="google" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Card 3: PharmaMate */}
-          <div className="phone-card-container group">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24"
+          >
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start gap-2 xl:gap-8">
+              {/* Splash Phone */}
+              <div className="phone-card-container group hidden lg:flex transform translate-y-12 scale-90 xl:scale-100 origin-right">
+                <div className="phone">
+                  <div className="frame">
+                    <div className="side-btn vol1"></div>
+                    <div className="side-btn vol2"></div>
+                    <div className="side-btn pwr"></div>
+                    <div className="screen bg-[#1a7a4a] flex flex-col items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#20965a]/20 to-transparent"></div>
+                      <div className="dynamic-island" style={{background: '#000'}}></div>
+                      <div className="flex flex-col items-center justify-center h-full space-y-4 relative z-10">
+                        <div className="w-20 h-20 rounded-3xl bg-white/10 flex items-center justify-center mb-2 border border-white/20 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                           <span className="text-5xl font-heading font-bold text-white">P</span>
+                        </div>
+                        <h3 className="text-3xl font-heading font-bold text-white tracking-tight mt-4">PharmaMate</h3>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-white/80">Pharmacy Delivered</p>
+                      </div>
+                      <div className="home-bar" style={{ background: 'rgba(255,255,255,0.4)' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="phone-card-container group scale-90 xl:scale-100 origin-left">
             <div className="phone">
               <div className="frame">
                 <div className="side-btn vol1"></div>
@@ -304,22 +456,38 @@ export default function AppShowcase() {
                 </div>
               </div>
             </div>
-            <div className="bg-dark/80 backdrop-blur-xl border border-primary/20 p-6 rounded-2xl w-full text-center transition-all">
-              <h3 className="text-2xl font-bold text-[#1a7a4a] mb-1">PharmaMate</h3>
-              <p className="text-accent text-sm font-semibold mb-4 uppercase tracking-wider">Pharmacy at Your Doorstep</p>
-              <ul className="text-sm text-foreground space-y-2 mb-4 text-left grid grid-cols-1 gap-1">
-                <li className="flex items-center gap-2"><span className="text-[#1a7a4a]">✓</span> Prescription Delivery</li>
-                <li className="flex items-center gap-2"><span className="text-[#1a7a4a]">✓</span> Medicine Tracker</li>
-                <li className="flex items-center gap-2"><span className="text-[#1a7a4a]">✓</span> Pharmacy Network</li>
-              </ul>
-              <p className="text-xs text-muted mb-6 text-left leading-relaxed">
-                PharmaMate connects pharmacies to patients, enabling fast, reliable delivery of prescribed medicines directly to the patient's home — zero friction, full care.
-              </p>
-              <a href="https://pharmamate-md.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#1a7a4a]/10 hover:bg-[#1a7a4a] border border-[#1a7a4a] text-[#1a7a4a] hover:text-white px-6 py-2 rounded-full text-sm font-bold transition-colors">
-                Read More →
-              </a>
+              </div>
             </div>
-          </div>
+
+            <div className="w-full lg:w-1/2 flex flex-col items-start text-left space-y-6 lg:pl-10">
+              <h3 className="text-4xl md:text-5xl font-bold text-[#1a7a4a] font-heading tracking-tight">PharmaMate</h3>
+              <p className="text-xl text-[#1a7a4a] font-mono uppercase tracking-widest text-sm opacity-80">Pharmacy at Your Doorstep</p>
+              <p className="text-lg text-sub font-light leading-relaxed max-w-lg">
+                PharmaMate connects local pharmacies directly to patients, enabling fast, reliable delivery of prescribed medicines right to the doorstep. Manage inventory, process e-prescriptions, and expand your pharmacy's reach seamlessly.
+              </p>
+              
+              <ul className="text-base text-text space-y-3 my-6">
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#1a7a4a] w-5 h-5" /> <span>Express Prescription Delivery</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#1a7a4a] w-5 h-5" /> <span>Direct E-Prescription Processing</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#1a7a4a] w-5 h-5" /> <span>Real-time Inventory Management</span></li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="text-[#1a7a4a] w-5 h-5" /> <span>Expanded Patient Network</span></li>
+              </ul>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
+                <a href="https://pharmamate-md.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center" style={{ background: '#1a7a4a', color: '#fff', borderColor: '#1a7a4a' }}>
+                  Explore PharmaMate
+                </a>
+              </div>
+              
+              <div className="pt-6 border-t border-white/5 w-full mt-6 max-w-md">
+                <p className="text-[10px] text-muted uppercase tracking-widest font-mono mb-4">Available on</p>
+                <div className="flex flex-row gap-4">
+                  <StoreBadge type="apple" />
+                  <StoreBadge type="google" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

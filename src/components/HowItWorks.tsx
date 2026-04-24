@@ -8,7 +8,7 @@ export default function HowItWorks() {
     {
       id: 1,
       icon: <Stethoscope className="w-8 h-8 text-primary" />,
-      title: "Doctor uses ClinXpert",
+      title: "Doctor uses ClinicXpert",
       description: "Generates E-prescriptions and monitors vitals remotely.",
     },
     {
@@ -33,9 +33,13 @@ export default function HowItWorks() {
       ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mb-4">One Ecosystem. Three Touchpoints.</h2>
-          <p className="text-xl text-muted font-body">Seamlessly connected for optimal care delivery.</p>
+        <div className="text-center mb-20 flex flex-col items-center">
+          <div className="section-tag">How it Works</div>
+          <h2 className="text-4xl md:text-[56px] font-bold font-heading text-text mb-4 leading-none tracking-tight">
+            One Ecosystem <br />
+            <em>Three Touchpoints.</em>
+          </h2>
+          <p className="text-lg text-sub font-body max-w-2xl mt-4 font-light">Seamlessly connected for optimal care delivery.</p>
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between relative mt-12 md:max-w-5xl md:mx-auto">

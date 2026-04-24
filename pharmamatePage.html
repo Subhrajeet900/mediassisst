@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaMate — Pharmacy at Your Doorstep | MediaSsisst</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg2: #111113;
+            --bg3: #1a1a1e;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #f4f4f8;
+            --muted: #6b6b76;
+            --sub: #9b9ba8;
+            --accent: #f0a0c0;
+            --accent-dim: #e080a8;
+            --font-d: 'Playfair Display', serif;
+            --font-b: 'DM Sans', sans-serif;
+            --font-m: 'Space Mono', monospace;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-b);
+            font-weight: 300;
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 22px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 11, 0.85);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .lt {
+            font-family: var(--font-d);
+            font-size: 20px;
+            color: var(--text)
+        }
+
+        .lt span {
+            color: #6dd4a8;
+            font-style: italic
+        }
+
+        .nb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--sub);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-m);
+            transition: color .3s
+        }
+
+        .nb:hover {
+            color: var(--accent)
+        }
+
+        .nt {
+            background: rgba(240, 160, 192, 0.08);
+            border: 1px solid rgba(240, 160, 192, 0.2);
+            color: var(--accent);
+            padding: 6px 16px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-m)
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 60px 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 50%, rgba(240, 160, 192, 0.05) 0%, transparent 60%)
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(240, 160, 192, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(240, 160, 192, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse at left center, black 30%, transparent 70%)
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .app-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(240, 160, 192, 0.08);
+            border: 1px solid rgba(240, 160, 192, 0.2);
+            padding: 8px 20px;
+            margin-bottom: 40px;
+            font-family: var(--font-m);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent)
+        }
+
+        .p-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        h1 {
+            font-family: var(--font-d);
+            font-size: clamp(44px, 6vw, 84px);
+            font-weight: 900;
+            line-height: .95;
+            letter-spacing: -2.5px;
+            color: var(--text)
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--sub);
+            margin-top: 24px;
+            font-weight: 300
+        }
+
+        .ha {
+            display: flex;
+            gap: 16px;
+            margin-top: 44px
+        }
+
+        .bp {
+            background: var(--accent);
+            color: #0a0a0b;
+            padding: 15px 32px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: none;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .bp:hover {
+            box-shadow: 0 20px 50px rgba(240, 160, 192, 0.25);
+            transform: translateY(-2px)
+        }
+
+        .bg {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--sub);
+            padding: 15px 32px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            cursor: none;
+            transition: all .3s;
+            text-decoration: none
+        }
+
+        .bg:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.3)
+        }
+
+        /* Pharmacy UI mockup */
+        .pharm-ui {
+            position: relative;
+            z-index: 1
+        }
+
+        .order-tracker {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.5)
+        }
+
+        .ot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px
+        }
+
+        .ot-title {
+            font-family: var(--font-d);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .ot-live {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--accent);
+            font-family: var(--font-m)
+        }
+
+        .ot-live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        .track-steps {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 28px
+        }
+
+        .ts {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1
+        }
+
+        .ts-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            border: 2px solid
+        }
+
+        .ts-done {
+            background: rgba(109, 212, 168, 0.15);
+            border-color: #6dd4a8;
+            color: #6dd4a8
+        }
+
+        .ts-active {
+            background: rgba(240, 160, 192, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+            animation: ringPulse 2s ease infinite
+        }
+
+        @keyframes ringPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(240, 160, 192, 0.3)
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(240, 160, 192, 0)
+            }
+        }
+
+        .ts-pending {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--muted)
+        }
+
+        .ts-info {
+            flex: 1
+        }
+
+        .ts-label {
+            font-size: 12px;
+            color: var(--text);
+            font-weight: 500
+        }
+
+        .ts-time {
+            font-size: 10px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        .ts-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+            margin: 0 8px;
+            max-width: 40px
+        }
+
+        .order-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px
+        }
+
+        .oi-box {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px
+        }
+
+        .oi-label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: var(--font-m);
+            margin-bottom: 6px
+        }
+
+        .oi-val {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500
+        }
+
+        .oi-val.accent {
+            color: var(--accent)
+        }
+
+        .med-list {}
+
+        .ml-header {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: var(--font-m);
+            margin-bottom: 12px
+        }
+
+        .ml-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+        }
+
+        .ml-item:last-child {
+            border-bottom: none
+        }
+
+        .ml-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0
+        }
+
+        .ml-name {
+            flex: 1;
+            font-size: 13px;
+            color: var(--sub)
+        }
+
+        .ml-qty {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        .ml-price {
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 500
+        }
+
+        /* FEATURES */
+        section.features {
+            padding: 100px 60px;
+            background: var(--bg2)
+        }
+
+        .fi {
+            max-width: 1200px;
+            margin: 0 auto 60px
+        }
+
+        .st {
+            font-family: var(--font-m);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .st::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent)
+        }
+
+        .stitle {
+            font-family: var(--font-d);
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.05;
+            letter-spacing: -2px
+        }
+
+        .stitle em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .fg {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .fc {
+            background: var(--bg2);
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: background .3s
+        }
+
+        .fc:hover {
+            background: rgba(240, 160, 192, 0.02)
+        }
+
+        .fc::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width .4s ease
+        }
+
+        .fc:hover::after {
+            width: 100%
+        }
+
+        .fn {
+            font-family: var(--font-m);
+            font-size: 11px;
+            color: rgba(240, 160, 192, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 16px
+        }
+
+        .fi2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block
+        }
+
+        .fname {
+            font-family: var(--font-d);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -.5px
+        }
+
+        .fdesc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--sub);
+            font-weight: 300
+        }
+
+        /* NETWORK */
+        section.network {
+            padding: 100px 60px;
+            background: var(--bg)
+        }
+
+        .ni {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px
+        }
+
+        .nc {}
+
+        .ntext {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--sub);
+            margin-top: 24px;
+            font-weight: 300
+        }
+
+        .nstats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 40px
+        }
+
+        .nstat {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all .3s
+        }
+
+        .nstat:hover {
+            border-color: rgba(240, 160, 192, 0.2);
+            background: rgba(240, 160, 192, 0.02)
+        }
+
+        .nstat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform .4s ease;
+            transform-origin: left
+        }
+
+        .nstat:hover::before {
+            transform: scaleX(1)
+        }
+
+        .nsval {
+            font-family: var(--font-d);
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1
+        }
+
+        .nsval span {
+            color: var(--accent);
+            font-size: 24px
+        }
+
+        .nslbl {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: var(--font-m);
+            margin-top: 6px
+        }
+
+        .pharm-network-vis {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px
+        }
+
+        .pnv-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px
+        }
+
+        .pharm-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all .3s
+        }
+
+        .pharm-item:last-child {
+            border-bottom: none
+        }
+
+        .pharm-item:hover {
+            padding-left: 8px
+        }
+
+        .pharm-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0
+        }
+
+        .pharm-name {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 500
+        }
+
+        .pharm-loc {
+            font-size: 11px;
+            color: var(--muted)
+        }
+
+        .pharm-status {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-family: var(--font-m)
+        }
+
+        .ps-open {
+            background: rgba(109, 212, 168, 0.1);
+            color: #6dd4a8
+        }
+
+        .ps-fast {
+            background: rgba(240, 160, 192, 0.1);
+            color: var(--accent)
+        }
+
+        .delivery-bar {
+            margin-top: 20px;
+            background: var(--bg3);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border)
+        }
+
+        .db-label {
+            font-size: 10px;
+            color: var(--muted);
+            font-family: var(--font-m);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px
+        }
+
+        .db-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            height: 6px;
+            margin-bottom: 6px;
+            overflow: hidden
+        }
+
+        .db-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6dd4a8, var(--accent));
+            border-radius: 4px;
+            width: 72%;
+            transition: width 1s ease
+        }
+
+        .db-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        /* HOW IT WORKS */
+        section.how {
+            padding: 100px 60px;
+            background: var(--bg2)
+        }
+
+        .how-inner {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            margin-top: 60px
+        }
+
+        .hs {
+            background: var(--bg2);
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: background .3s
+        }
+
+        .hs:hover {
+            background: rgba(240, 160, 192, 0.02)
+        }
+
+        .hs-num {
+            font-family: var(--font-m);
+            font-size: 11px;
+            color: rgba(240, 160, 192, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 16px
+        }
+
+        .hs-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block
+        }
+
+        .hs-title {
+            font-family: var(--font-d);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -.5px
+        }
+
+        .hs-desc {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--sub);
+            font-weight: 300
+        }
+
+        .hs-arrow {
+            position: absolute;
+            top: 40px;
+            right: 32px;
+            font-size: 20px;
+            color: rgba(240, 160, 192, 0.2)
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 60px;
+            background: var(--bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(240, 160, 192, 0.05) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative
+        }
+
+        .ct {
+            font-family: var(--font-d);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: -2px;
+            line-height: 1.05
+        }
+
+        .ct em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .cd {
+            font-size: 17px;
+            color: var(--sub);
+            margin-top: 20px;
+            line-height: 1.8;
+            font-weight: 300
+        }
+
+        .ca {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 48px
+        }
+
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .fl2 {
+            font-family: var(--font-d);
+            font-size: 18px;
+            color: var(--text)
+        }
+
+        .fl2 span {
+            color: #6dd4a8;
+            font-style: italic
+        }
+
+        .flinks {
+            display: flex;
+            gap: 24px
+        }
+
+        .flinks a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color .3s
+        }
+
+        .flinks a:hover {
+            color: var(--text)
+        }
+
+        .fcopy {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: var(--font-m)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .8s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .rd1 {
+            transition-delay: .1s
+        }
+
+        .rd2 {
+            transition-delay: .2s
+        }
+
+        .rd3 {
+            transition-delay: .3s
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor" id="cursor"></div>
+
+    <nav>
+        <a href="index.html" style="text-decoration:none"><span class="lt">Media<span>Ssisst</span></span></a>
+        <a href="index.html" class="nb">← Back to Home</a>
+        <span class="nt">PharmaMate</span>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="app-pill"><span class="p-dot"></span> For Pharmacies & Patients</div>
+                <h1>Pharmacy,<br><em>Delivered.</em><br>Zero Friction.</h1>
+                <p class="hero-desc">PharmaMate connects pharmacies to patients, enabling instant delivery of prescribed
+                    medicines — intelligently, reliably, and compassionately.</p>
+                <div class="ha">
+                    <a href="#" class="bp">Get PharmaMate →</a>
+                    <a href="#features" class="bg">See How It Works</a>
+                </div>
+            </div>
+
+            <!-- Order Tracker UI -->
+            <div class="pharm-ui reveal rd2">
+                <div class="order-tracker">
+                    <div class="ot-header">
+                        <div class="ot-title">Order #PH-2048</div>
+                        <div class="ot-live">Live Tracking</div>
+                    </div>
+                    <div class="track-steps">
+                        <div class="ts">
+                            <div class="ts-dot ts-done">✓</div>
+                            <div class="ts-info">
+                                <div class="ts-label">Confirmed</div>
+                                <div class="ts-time">10:15 AM</div>
+                            </div>
+                        </div>
+                        <div class="ts-line"></div>
+                        <div class="ts">
+                            <div class="ts-dot ts-done">✓</div>
+                            <div class="ts-info">
+                                <div class="ts-label">Packed</div>
+                                <div class="ts-time">10:28 AM</div>
+                            </div>
+                        </div>
+                        <div class="ts-line"></div>
+                        <div class="ts">
+                            <div class="ts-dot ts-active">🚴</div>
+                            <div class="ts-info">
+                                <div class="ts-label">Out for Delivery</div>
+                                <div class="ts-time">Now</div>
+                            </div>
+                        </div>
+                        <div class="ts-line"></div>
+                        <div class="ts">
+                            <div class="ts-dot ts-pending">📦</div>
+                            <div class="ts-info">
+                                <div class="ts-label">Delivered</div>
+                                <div class="ts-time">ETA 35 min</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-info">
+                        <div class="oi-box">
+                            <div class="oi-label">Pharmacy</div>
+                            <div class="oi-val">MedPlus, Connaught Place</div>
+                        </div>
+                        <div class="oi-box">
+                            <div class="oi-label">ETA</div>
+                            <div class="oi-val accent">35 minutes</div>
+                        </div>
+                    </div>
+                    <div class="ml-header">Your Medicines</div>
+                    <div class="ml-item">
+                        <div class="ml-icon" style="background:rgba(240,160,192,0.1)">💊</div>
+                        <div class="ml-name">Metformin 500mg</div>
+                        <div class="ml-qty">×30</div>
+                        <div class="ml-price">₹45</div>
+                    </div>
+                    <div class="ml-item">
+                        <div class="ml-icon" style="background:rgba(122,184,240,0.1)">💉</div>
+                        <div class="ml-name">Atorvastatin 10mg</div>
+                        <div class="ml-qty">×30</div>
+                        <div class="ml-price">₹62</div>
+                    </div>
+                    <div class="ml-item">
+                        <div class="ml-icon" style="background:rgba(109,212,168,0.1)">🌿</div>
+                        <div class="ml-name">Paracetamol 500mg</div>
+                        <div class="ml-qty">×15</div>
+                        <div class="ml-price">₹18</div>
+                    </div>
+                    <div
+                        style="border-top:1px solid rgba(255,255,255,0.06);margin-top:12px;padding-top:12px;display:flex;justify-content:space-between;align-items:center">
+                        <div style="font-size:12px;color:var(--muted);font-family:var(--font-m)">Total</div>
+                        <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--text)">₹125
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="fi">
+            <div class="st reveal">Features</div>
+            <h2 class="stitle reveal rd1">Medicine. Delivered.<br><em>The Right Way.</em></h2>
+        </div>
+        <div class="fg">
+            <div class="fc reveal">
+                <div class="fn">01</div>
+                <span class="fi2">📬</span>
+                <div class="fname">Prescription Delivery</div>
+                <p class="fdesc">Prescriptions auto-arrive from ClinXpert. PharmaMate fulfills and delivers to your
+                    door, no pharmacist visit needed.</p>
+            </div>
+            <div class="fc reveal rd1">
+                <div class="fn">02</div>
+                <span class="fi2">📊</span>
+                <div class="fname">Medicine Tracker</div>
+                <p class="fdesc">Track your orders in real-time with live delivery updates. Know exactly when your
+                    medicines will arrive.</p>
+            </div>
+            <div class="fc reveal rd2">
+                <div class="fn">03</div>
+                <span class="fi2">🏥</span>
+                <div class="fname">Pharmacy Network</div>
+                <p class="fdesc">Connected to hundreds of verified pharmacies across the city. Always the nearest,
+                    always the fastest.</p>
+            </div>
+            <div class="fc reveal">
+                <div class="fn">04</div>
+                <span class="fi2">🔔</span>
+                <div class="fname">Refill Reminders</div>
+                <p class="fdesc">Never run out. Smart reminders alert you when medicines are running low and
+                    auto-suggest refill orders.</p>
+            </div>
+            <div class="fc reveal rd1">
+                <div class="fn">05</div>
+                <span class="fi2">🔒</span>
+                <div class="fname">Verified & Safe</div>
+                <p class="fdesc">Every medicine is verified for authenticity. Cold-chain support for
+                    temperature-sensitive medications.</p>
+            </div>
+            <div class="fc reveal rd2">
+                <div class="fn">06</div>
+                <span class="fi2">💸</span>
+                <div class="fname">Transparent Pricing</div>
+                <p class="fdesc">MRP-accurate pricing with no hidden fees. Compare across pharmacies and choose the best
+                    value.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NETWORK -->
+    <section class="network">
+        <div class="ni">
+            <div class="st reveal">Our Network</div>
+            <h2 class="stitle reveal rd1">Thousands of Pharmacies,<br><em>One Platform.</em></h2>
+            <div class="network-grid">
+                <div class="nc reveal rd2">
+                    <p class="ntext">PharmaMate partners with hundreds of verified pharmacies across India, ensuring
+                        availability and speed no matter where you are. Our network grows every day.</p>
+                    <div class="nstats">
+                        <div class="nstat">
+                            <div class="nsval">200<span>+</span></div>
+                            <div class="nslbl">Partner Pharmacies</div>
+                        </div>
+                        <div class="nstat">
+                            <div class="nsval">35<span>min</span></div>
+                            <div class="nslbl">Avg Delivery Time</div>
+                        </div>
+                        <div class="nstat">
+                            <div class="nsval">99<span>%</span></div>
+                            <div class="nslbl">On-time Delivery</div>
+                        </div>
+                        <div class="nstat">
+                            <div class="nsval">24<span>/7</span></div>
+                            <div class="nslbl">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal rd3">
+                    <div class="pharm-network-vis">
+                        <div class="pnv-title">Nearby Partner Pharmacies</div>
+                        <div class="pharm-item">
+                            <div class="pharm-logo" style="background:rgba(240,160,192,0.1)">🏥</div>
+                            <div>
+                                <div class="pharm-name">MedPlus Pharmacy</div>
+                                <div class="pharm-loc">Connaught Place · 0.8 km</div>
+                            </div>
+                            <div class="pharm-status ps-fast">Fast</div>
+                        </div>
+                        <div class="pharm-item">
+                            <div class="pharm-logo" style="background:rgba(122,184,240,0.1)">💊</div>
+                            <div>
+                                <div class="pharm-name">Apollo Pharmacy</div>
+                                <div class="pharm-loc">Janpath · 1.2 km</div>
+                            </div>
+                            <div class="pharm-status ps-open">Open</div>
+                        </div>
+                        <div class="pharm-item">
+                            <div class="pharm-logo" style="background:rgba(109,212,168,0.1)">🌿</div>
+                            <div>
+                                <div class="pharm-name">Wellness Forever</div>
+                                <div class="pharm-loc">Patel Nagar · 2.1 km</div>
+                            </div>
+                            <div class="pharm-status ps-open">Open</div>
+                        </div>
+                        <div class="pharm-item">
+                            <div class="pharm-logo" style="background:rgba(240,184,120,0.1)">⚕️</div>
+                            <div>
+                                <div class="pharm-name">Noble Medical Store</div>
+                                <div class="pharm-loc">Rajouri Garden · 3.4 km</div>
+                            </div>
+                            <div class="pharm-status ps-open">Open</div>
+                        </div>
+                    </div>
+                    <div class="delivery-bar" style="margin-top:12px">
+                        <div class="db-label">Order #PH-2048 — Live Progress</div>
+                        <div class="db-track">
+                            <div class="db-fill"></div>
+                        </div>
+                        <div class="db-labels"><span>Confirmed</span><span>Packed</span><span>En
+                                Route</span><span>Delivered</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="how-inner">
+            <div class="st reveal">Process</div>
+            <h2 class="stitle reveal rd1">How PharmaMate<br><em>Works.</em></h2>
+            <div class="how-steps">
+                <div class="hs reveal">
+                    <div class="hs-num">01</div>
+                    <span class="hs-arrow">→</span>
+                    <span class="hs-icon">🩺</span>
+                    <div class="hs-title">Doctor Prescribes</div>
+                    <p class="hs-desc">Your doctor uses ClinXpert to generate a digital prescription, sent instantly to
+                        PharmaMate.</p>
+                </div>
+                <div class="hs reveal rd1">
+                    <div class="hs-num">02</div>
+                    <span class="hs-arrow">→</span>
+                    <span class="hs-icon">🔎</span>
+                    <div class="hs-title">Pharmacy Matches</div>
+                    <p class="hs-desc">PharmaMate finds the nearest available pharmacy with all your medicines in stock.
+                    </p>
+                </div>
+                <div class="hs reveal rd2">
+                    <div class="hs-num">03</div>
+                    <span class="hs-arrow">→</span>
+                    <span class="hs-icon">📦</span>
+                    <div class="hs-title">Order is Packed</div>
+                    <p class="hs-desc">Medicines are carefully verified, packed, and handed to a delivery partner — all
+                        within minutes.</p>
+                </div>
+                <div class="hs reveal rd3">
+                    <div class="hs-num">04</div>
+                    <span class="hs-icon">🏠</span>
+                    <div class="hs-title">Delivered to Door</div>
+                    <p class="hs-desc">Track your delivery live and receive your medicines safely at your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner">
+            <div class="st reveal" style="justify-content:center">Join PharmaMate</div>
+            <h2 class="ct reveal rd1">Medicines, Delivered<br>in <em>35 Minutes.</em></h2>
+            <p class="cd reveal rd2">Connect your pharmacy to the PharmaMate network and reach thousands of patients —
+                or download as a patient and get medicines delivered instantly.</p>
+            <div class="ca reveal rd3">
+                <a href="#" class="bp">Join as Pharmacy →</a>
+                <a href="index.html" class="bg">Back to Ecosystem</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="fl2">Media<span>Ssisst</span></span>
+        <div class="flinks">
+            <a href="index.html">Home</a>
+            <a href="clinxpert.html">ClinXpert</a>
+            <a href="healthbuddy.html">HealthBuddy</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <span class="fcopy">© 2025 MediaSsisst</span>
+    </footer>
+
+    <script>
+        document.addEventListener('mousemove', e => { const c = document.getElementById('cursor'); c.style.left = e.clientX - 6 + 'px'; c.style.top = e.clientY - 6 + 'px' });
+        const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target) } }) }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        setTimeout(() => { const f = document.querySelector('.db-fill'); if (f) f.style.width = '72%' }, 500);
+    </script>
+</body>
+
+</html>
