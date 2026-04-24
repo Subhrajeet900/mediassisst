@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, Activity, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,11 +41,11 @@ export default function About() {
           >
             <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full transform -translate-x-4 translate-y-4"></div>
             <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/3]">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop"
                 alt="Doctor consulting with a patient"
-                className="object-cover w-full h-full grayscale-[30%] opacity-80 mix-blend-lighten"
-                loading="lazy"
+                fill
+                className="object-cover grayscale-[30%] opacity-80 mix-blend-lighten"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent"></div>
             </div>
