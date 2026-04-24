@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Download } from "lucide-react";
 
 const StoreBadge = ({ type }: { type: 'apple' | 'google' }) => {
   if (type === 'apple') {
@@ -264,6 +264,10 @@ export default function AppShowcase() {
                 <a href="https://clinicxpert.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center">
                   Explore ClinicXpert
                 </a>
+                <a href="/downloads/clinicxpert.apk" download className="btn-g text-center group">
+                  <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 transition-transform" />
+                  Download APK
+                </a>
               </div>
               
               <div className="pt-6 border-t border-white/5 w-full mt-6 max-w-md">
@@ -377,6 +381,10 @@ export default function AppShowcase() {
                 <a href="https://healthbuddy-md.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center" style={{ background: '#00a86b', color: '#0a0a0b', borderColor: '#00a86b' }}>
                   Explore HealthBuddy
                 </a>
+                <a href="/downloads/healthbuddy.apk" download className="btn-g text-center group">
+                  <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 transition-transform" />
+                  Download APK
+                </a>
               </div>
               
               <div className="pt-6 border-t border-white/5 w-full mt-6 max-w-md">
@@ -476,6 +484,10 @@ export default function AppShowcase() {
               <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
                 <a href="https://pharmamate-md.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-p text-center" style={{ background: '#1a7a4a', color: '#fff', borderColor: '#1a7a4a' }}>
                   Explore PharmaMate
+                </a>
+                <a href="/downloads/pharmamate.apk" download className="btn-g text-center group">
+                  <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 transition-transform" />
+                  Download APK
                 </a>
               </div>
               

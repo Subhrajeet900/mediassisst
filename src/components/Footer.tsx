@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="space-y-6 text-center md:text-left">
             <Link href="#home" className="flex items-center justify-center md:justify-start gap-2 group cursor-none">
               <span className="font-heading text-2xl font-bold tracking-tight text-text">
-                Media<span className="text-primary italic font-normal">Ssisst</span>
+                Medi <span className="text-primary italic font-normal">Assisst</span>
               </span>
             </Link>
             <p className="text-muted text-sm max-w-xs mx-auto md:mx-0">
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-muted/60">
-          <p>© 2025 MediaSsisst. All rights reserved.</p>
+          <p>© 2025 Medi Assisst. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <span>·</span>

@@ -22,7 +22,7 @@ export default function Team() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold font-heading text-white inline-block relative mb-4"
           >
-            The Minds Behind MediaSsisst
+            The Minds Behind Medi Assisst
             <span className="absolute -bottom-3 left-1/4 right-1/4 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></span>
           </motion.h2>
           <p className="text-xl text-muted font-body mt-4">A passionate team building the future of digital healthcare.</p>

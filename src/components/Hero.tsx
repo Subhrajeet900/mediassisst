@@ -27,7 +27,7 @@ export default function Hero() {
           </h1>
           
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-sub mb-10 leading-relaxed font-light">
-            MediaSsisst connects doctors, patients, and pharmacies into one seamless digital healthcare ecosystem.
+            Medi Assisst connects doctors, patients, and pharmacies into one seamless digital healthcare ecosystem.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">

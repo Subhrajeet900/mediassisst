@@ -21,8 +21,8 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MediaSsisst - The Future of Healthcare, In Your Pocket",
-  description: "MediaSsisst connects doctors, patients, and pharmacies into one seamless digital healthcare ecosystem.",
+  title: "Medi Assisst - The Future of Healthcare, In Your Pocket",
+  description: "Medi Assisst connects doctors, patients, and pharmacies into one seamless digital healthcare ecosystem.",
 };
 
 export default function RootLayout({

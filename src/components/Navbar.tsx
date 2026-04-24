@@ -35,7 +35,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="#home" className="flex items-center gap-2 group cursor-none">
             <span className="font-heading text-2xl font-bold tracking-tight text-text">
-              Media<span className="text-primary italic font-normal">Ssisst</span>
+              Medi <span className="text-primary italic font-normal">Assisst</span>
             </span>
           </Link>
 

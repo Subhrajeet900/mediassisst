@@ -26,7 +26,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-[56px] font-bold font-heading relative will-change-transform text-text leading-none tracking-tight"
           >
-            What is <br className="lg:hidden" /><em>MediaSsisst?</em>
+            What is <br className="lg:hidden" /><em>Medi Assisst?</em>
           </motion.h2>
         </div>
 
@@ -58,7 +58,7 @@ export default function About() {
             className="will-change-transform"
           >
             <p className="text-lg md:text-xl text-sub font-body leading-relaxed mb-10 font-light">
-              MediaSsisst is a next-generation digital health platform designed to bridge the gap between healthcare providers, patients, and pharmacies. Built for the modern world, our ecosystem empowers every stakeholder — from the doctor's clinic to the patient's home.
+              Medi Assisst is a next-generation digital health platform designed to bridge the gap between healthcare providers, patients, and pharmacies. Built for the modern world, our ecosystem empowers every stakeholder — from the doctor's clinic to the patient's home.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
