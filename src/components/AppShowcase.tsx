@@ -308,7 +308,7 @@ export default function AppShowcase() {
                       <div className="hb-banner-name">Aarav Mehta</div>
                       <div className="hb-banner-sub">1 appointment today · 2 medicines due</div>
                     </div>
-                    <div className="hb-section-title">Today's Appointment</div>
+                    <div className="hb-section-title">Today&apos;s Appointment</div>
                     <div className="hb-appt-card">
                       <div className="hb-appt-top">
                         <div className="hb-dr-avatar">PM</div>
@@ -471,7 +471,7 @@ export default function AppShowcase() {
               <h3 className="text-4xl md:text-5xl font-bold text-[#1a7a4a] font-heading tracking-tight">PharmaMate</h3>
               <p className="text-xl text-[#1a7a4a] font-mono uppercase tracking-widest text-sm opacity-80">Pharmacy at Your Doorstep</p>
               <p className="text-lg text-sub font-light leading-relaxed max-w-lg">
-                PharmaMate connects local pharmacies directly to patients, enabling fast, reliable delivery of prescribed medicines right to the doorstep. Manage inventory, process e-prescriptions, and expand your pharmacy's reach seamlessly.
+                PharmaMate connects local pharmacies directly to patients, enabling fast, reliable delivery of prescribed medicines right to the doorstep. Manage inventory, process e-prescriptions, and expand your pharmacy&apos;s reach seamlessly.
               </p>
               
               <ul className="text-base text-text space-y-3 my-6">

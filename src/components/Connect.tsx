@@ -40,7 +40,7 @@ export default function Connect() {
             Get In <br />
             <em>Touch.</em>
           </h2>
-          <p className="text-lg text-sub font-body max-w-2xl mt-4 font-light">Want to know more? Reach out and we'll get back to you.</p>
+          <p className="text-lg text-sub font-body max-w-2xl mt-4 font-light">Want to know more? Reach out and we&apos;ll get back to you.</p>
         </div>
 
         <motion.div
@@ -106,7 +106,7 @@ export default function Connect() {
             className="fixed bottom-10 left-1/2 z-50 flex items-center gap-3 bg-surface border border-primary px-6 py-4 rounded-full shadow-[0_0_20px_rgba(0,200,150,0.3)]"
           >
             <CheckCircle2 className="w-6 h-6 text-primary" />
-            <span className="text-white font-medium">Thanks! We'll reach out shortly.</span>
+            <span className="text-white font-medium">Thanks! We&apos;ll reach out shortly.</span>
           </motion.div>
         )}
       </AnimatePresence>
